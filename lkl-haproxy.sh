@@ -5,10 +5,7 @@ Error="${Red_font}[Error]${Font_suffix}"
 echo -e "
 ${Green_font}
 #================================================
-# 脚本: bbrplus lkl-haproxy
-# 版本: 1.0.7
-# 作者: mzz2017
-# Github: https://github.com/mzz2017/lkl-haproxy
+run sh
 #================================================
 ${Font_suffix}"
 
