@@ -42,13 +42,13 @@ start(){
 enable(){
 	if [ "`cat /etc/issue | grep -iE "debian"`" ] || [ "`cat /etc/issue | grep -iE "ubuntu"`" ] || ([ -f "/etc/redhat-release" ] && [ "`cat /etc/redhat-release | grep -iE "centos"`" ])
 	then
-		wget --no-cache -O /etc/systemd/system/lkl-haproxy.service https://github.com/mzz2017/lkl-haproxy/raw/master/requirement/lkl-haproxy.service
+		wget --no-cache -O /etc/systemd/system/lkl-haproxy.service https://github.com/SAKURA-KIMI/lkl-haproxy/raw/master/requirement/lkl-haproxy.service
 		systemctl daemon-reload
 		systemctl enable lkl-haproxy
 	elif [ "`cat /etc/issue | grep -iE "alpine"`" ]
 	then
 		command -v openrc || apk add openrc
-		wget --no-cache -O /etc/init.d/lkl-haproxy https://github.com/mzz2017/lkl-haproxy/raw/master/requirement/alpine/lkl-haproxy
+		wget --no-cache -O /etc/init.d/lkl-haproxy https://github.com/SAKURA-KIMI/lkl-haproxy/raw/master/requirement/alpine/lkl-haproxy
 		chmod 0755 /etc/init.d/lkl-haproxy
 		rc-update add lkl-haproxy boot
 	else
@@ -96,8 +96,8 @@ check_ldd(){
 			apk add --allow-untrusted glibc.apk
 		fi
 		# requirements
-		wget --no-cache -O sorequirements.txt https://github.com/mzz2017/lkl-haproxy/raw/master/requirement/alpine/sorequirements.txt
-		cat sorequirements.txt | while read -r line;do wget --no-clobber -O /usr/glibc-compat/lib/$line https://github.com/mzz2017/lkl-haproxy/raw/master/requirement/alpine/$line;done
+		wget --no-cache -O sorequirements.txt https://github.com/SAKURA-KIMI/lkl-haproxy/raw/master/requirement/alpine/sorequirements.txt
+		cat sorequirements.txt | while read -r line;do wget --no-clobber -O /usr/glibc-compat/lib/$line https://github.com/SAKURA-KIMI/lkl-haproxy/raw/master/requirement/alpine/$line;done
 	else
 		echo -e "不支持的 linux 发行版: $(cut -d\\ -f 1 /etc/issue|head -n 1)"
 		exit 1
@@ -141,7 +141,7 @@ config(){
 	done
 
 	# download unfully-config-redirect
-	[[ ! -f redirect.sh ]] && wget --no-cache -O redirect.sh https://github.com/mzz2017/lkl-haproxy/raw/master/requirement/redirect.sh
+	[[ ! -f redirect.sh ]] && wget --no-cache -O redirect.sh https://github.com/SAKURA-KIMI/lkl-haproxy/raw/master/requirement/redirect.sh
 
 	# config: haproxy && redirect
 	if [[ "${choose}" == "1" ]]; then
@@ -218,7 +218,7 @@ check_all(){
 	[[ ! -f redirect.sh ]] && echo -e "${Error} 出错，没有发现 redirect.sh !" && exit 1
 
 	# check lkl-mod
-	[[ ! -f liblkl-hijack.so ]] && wget --no-cache https://github.com/mzz2017/lkl-haproxy/raw/master/mod/liblkl-hijack.so
+	[[ ! -f liblkl-hijack.so ]] && wget --no-cache https://github.com/SAKURA-KIMI/lkl-haproxy/raw/master/mod/liblkl-hijack.so
 	[[ ! -f liblkl-hijack.so ]] && echo -e "${Error} 下载 liblkl-hijack.so 失败 !" && exit 1
 
 	# check haproxy
@@ -228,7 +228,7 @@ check_all(){
 		${INSTALL[i]} haproxy
 	elif [ "`cat /etc/issue | grep -iE "alpine"`" ]
 	then
-		wget -O ./haproxy https://github.com/mzz2017/lkl-haproxy/raw/master/requirement/alpine/haproxy
+		wget -O ./haproxy https://github.com/SAKURA-KIMI/lkl-haproxy/raw/master/requirement/alpine/haproxy
 		ln -s /etc/lklhaproxy/haproxy /usr/bin/haproxy
 	else
 		echo -e "不支持的 linux 发行版: $(cut -d\\ -f 1 /etc/issue|head -n 1)"
