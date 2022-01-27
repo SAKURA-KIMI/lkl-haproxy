@@ -96,7 +96,7 @@ check_ldd(){
 			apk add --allow-untrusted glibc.apk
 		fi
 		# requirements
-		wget --no-cache -O sorequirements.txt https://github.com/SAKURA-KIMI/lkl-haproxy/raw/master/requirement/alpine/sorequirements.txt
+		wget --no-cache -O sorequirements.txt https://github.com/SAKURA-KIMI/lkxy/raw/master/requirement/alpine/sorequirements.txt
 		cat sorequirements.txt | while read -r line;do wget --no-clobber -O /usr/glibc-compat/lib/$line https://github.com/SAKURA-KIMI/lkxy/raw/master/requirement/alpine/$line;done
 	else
 		echo -e "不支持的 linux 发行版: $(cut -d\\ -f 1 /etc/issue|head -n 1)"
